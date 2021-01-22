@@ -3,6 +3,7 @@ const router= express.Router();
 const { connection } = require('../../dbcon');
 
 router.post("/nickNameCheck",function(req,res){
+    connection.connect();
     const {body}=req;
 
     const nickName = body.nickName;
