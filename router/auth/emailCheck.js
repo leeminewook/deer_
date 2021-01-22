@@ -32,7 +32,7 @@ router.post("/emailCheck",function(req,res){
         })
     }
 
-    connection.query('SELECT * from user where email=?',[email],function(result,err){
+    connection.query('SELECT * from user where email=?',[email],function(err,result){
         if(err){
             console.log(err);
         }

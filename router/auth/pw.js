@@ -19,6 +19,13 @@ router.post('/pw',function(req,res){
             })
         }
 
+        if(pw.includes(" ")){
+            console.log("비번공백 포함");
+            return res.status(403).json({
+                message:"비밀번호에 공백을 포함할 수 없습니다",
+            })
+        }
+
         if((pattern_kor.test(pw))||!(pattern_special.test(pw))||!(pattern_eng.test(pw))){
             console.log("알맞지 않는 비밀번호 형식");
             return res.status(403).json({

@@ -23,7 +23,7 @@ router.post("/idCheck",function(req,res){
         })
     }
 
-    connection.query('SELECT * from user where id=?',[id],function(result,err){
+    connection.query('SELECT * from user where id=?',[id],function(err,result){
         if(err){
             console.log(err);
             return res.status(403).json({

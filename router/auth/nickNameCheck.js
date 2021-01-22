@@ -23,7 +23,7 @@ router.post("/nickNameCheck",function(req,res){
         })
     }
 
-    connection.query('SELECT * from user where nickName=?',[nickName],function(result,err){
+    connection.query('SELECT * from user where nickName=?',[nickName],function(err,result){
         if(err){
             return res.status(403).json({
                 message:"쿼리 에러",
