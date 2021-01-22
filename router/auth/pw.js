@@ -8,9 +8,7 @@ router.post('/pw',function(req,res){
     const {body} = req;
     const pw = body.pw;
 
-        var pattern_special =  /[~!@\#$%<>^&*\()\-=+_\’]/gi,
-            pattern_kor = /[ㄱ-ㅎ가-힣]/g,
-            pattern_eng = /[A-za-z]/g;
+        const pw_Check = /^(?=.*[a-zA-z])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,}$/
 
         if(!pw){
             console.log("비밀번호 입력 X");
@@ -25,8 +23,8 @@ router.post('/pw',function(req,res){
                 message:"비밀번호에 공백을 포함할 수 없습니다",
             })
         }
-
-        if((pattern_kor.test(pw))||!(pattern_special.test(pw))||!(pattern_eng.test(pw))){
+        
+        if(!(pw_Check.test(pw))){
             console.log("알맞지 않는 비밀번호 형식");
             return res.status(403).json({
                 message:"알맞지 않은 비밀번호 형식입니다",
