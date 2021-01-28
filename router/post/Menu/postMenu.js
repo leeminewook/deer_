@@ -4,9 +4,9 @@ const { connection } = require('../../../dbcon');
 
 router.post("/post",function(req,res){
     connection.connect();
-    const {body} = req;
+    const {body,user} = req;
 
-    const nickName = body.nickName;
+    const nickName = user.nickName;
     const postTitle = body.postTitle;
     const food = body.food;
     const postFile = body.postFile;
@@ -44,7 +44,7 @@ router.post("/post",function(req,res){
                 message:"쿼리 에러",
             })
         } else {
-            console.log(result);
+            console.log(user);
             return res.status(200).json({
                 message:"글 게시 성공",
                 result,

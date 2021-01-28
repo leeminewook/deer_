@@ -33,15 +33,14 @@ router.post('/login',function(req,res){
           })
       }else{
           const token =jwt.sign({
-              id:result.id,
-              nickName:result.nickName,
-              name:result.name,
+              id:result[0].id,
+              nickName:result[0].nickName,
+              name:result[0].name,
           },
           secretKey, {
               expiresIn:'7d',
           });
           console.log("로그인 성공");
-          console.log(result);
           return res.status(200).json({
             message:"로그인 성공",
             token:{
